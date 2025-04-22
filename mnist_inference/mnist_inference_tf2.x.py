@@ -1,5 +1,6 @@
 '''This is inference code for mnist dataset '''
 
+
 from __future__ import print_function
 import tensorflow.keras
 from tensorflow.keras.datasets import mnist
@@ -12,6 +13,7 @@ from PIL import Image
 import numpy as np
 import os
 import tensorflow as tf
+import pandas as pd
 
 # Recreate the exact same model, including its weights and the optimizer
 model = tf.keras.models.load_model('saved_model/')
@@ -37,7 +39,7 @@ for index in range(10):
 	im2arr = im2arr.reshape(1,28,28,1)
 
 	# Predicting the Test set results
-	y_pred = model.predict_classes(im2arr)	#<-- 7 or 4
+	y_pred = model.predict_step(im2arr)	#<-- 7 or 4
 	
 	print()
 	pred_label = np.argmax(y_pred) 
@@ -56,10 +58,10 @@ print('****tensorflow version****:',tf.__version__)
 print()
 
 data = {
-    '이름': ['김병규'],
-    '학번': [12345],
+    '이름': ['임효주주'],
+    '학번': [2410562],
     '학과': ['인공지능공학부']
 }
 
-df = pandas.DataFrame(data)
+df = pd.DataFrame(data)
 print(df)
